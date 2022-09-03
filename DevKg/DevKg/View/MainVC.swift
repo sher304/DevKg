@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+class MainViewController: ViewBase {
     
     private lazy var viewModel: ViewModel = {
         return ViewModel()
@@ -21,14 +21,8 @@ class MainViewController: UIViewController {
         return tablev
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        bindViewModel()
-        setupConstraints()
-        view.backgroundColor = .orange
-    }
     
-    func setupConstraints(){
+    override func setupConstraints(){
         view.addSubview(tableV)
         tableV.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -36,7 +30,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func bindViewModel(){
+    override func bindViewModel(){
         viewModel.shareData()
         viewModel.items.bind { [self] _ in
             DispatchQueue.main.async {

@@ -39,7 +39,9 @@ class MainViewController: UIViewController {
     func bindViewModel(){
         viewModel.shareData()
         viewModel.items.bind { [self] _ in
-            tableV.reloadData()
+            DispatchQueue.main.async {
+                self.tableV.reloadData()
+            }
         }
     }
 }
@@ -48,13 +50,13 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.items.value.result.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.backgroundColor = .orange
-        cell.textLabel?.text = viewModel.items.value.result.list.first?.slug
+        cell.textLabel?.text = viewModel.items.value.result.list[indexPath.row].position
         return cell
     }
 }

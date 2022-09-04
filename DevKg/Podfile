@@ -8,4 +8,5 @@ target 'DevKg' do
   # Pods for DevKg
 	pod 'Kingfisher'
 	pod 'SnapKit'
+	pod 'Hero'
 end

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - DevResults
 struct DevResults: Codable {
     let success: Bool
     let result: Result
@@ -47,6 +47,10 @@ struct List: Codable {
         case organizationName = "organization_name"
         case organizationIcon = "organization_icon"
     }
+}
+
+struct Link: Codable{
+    let link: String?
 }
 
 enum City: String, Codable {

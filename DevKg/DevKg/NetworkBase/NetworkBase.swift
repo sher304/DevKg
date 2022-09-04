@@ -16,10 +16,8 @@ class NetworkBase{
                 completion(.failure(NetworkErrors.wrongURL))
             }
         }
-        
         let oldUrl = url.url?.description
         let fixedUrl = oldUrl!.replacingOccurrences(of: "%3F", with: "?")
-        
         let session = URLSession.shared
         
         

@@ -82,13 +82,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CustomCell()
-//        cell.textLabel?.text = viewModel.items.value.result.list[indexPath.row].position
         let items = viewModel.items.value.result.list[indexPath.row]
         cell.fillData(results: items)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
 }

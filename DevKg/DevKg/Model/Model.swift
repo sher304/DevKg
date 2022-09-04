@@ -49,10 +49,6 @@ struct List: Codable {
     }
 }
 
-struct Link: Codable{
-    let link: String?
-}
-
 enum City: String, Codable {
     case bishkek = "BISHKEK"
     case бишкек = "Бишкек"
@@ -64,6 +60,7 @@ enum Currency: String, Codable {
 }
 
 enum Salary: String, Codable {
+    case hourly = "hourly"
     case monthly = "monthly"
 }
 

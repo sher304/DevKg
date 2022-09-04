@@ -48,7 +48,7 @@ class CustomCell: UITableViewCell{
     
     private lazy var workTypeTitle: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 13, weight: .semibold)
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = .black
         return label
     }()
@@ -89,6 +89,7 @@ class CustomCell: UITableViewCell{
             make.top.equalTo(companyTitle.snp.bottom).offset(15)
             make.leading.equalTo(companyTitle)
             make.width.equalTo(contentView.frame.width / 2)
+            make.height.equalTo(contentView.frame.height / 3)
         }
         
         contentView.addSubview(salaryTitle)

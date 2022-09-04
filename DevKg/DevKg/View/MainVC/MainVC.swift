@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Hero
 import SnapKit
 
 class MainViewController: ViewBase {
@@ -28,7 +29,14 @@ class MainViewController: ViewBase {
         button.tintColor = .orange
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
+        button.addTarget(self, action: #selector(filterTapped), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var someView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .orange
+        return view
     }()
     
     private lazy var tableV: UITableView = {
@@ -41,7 +49,7 @@ class MainViewController: ViewBase {
     
     
     override func setupConstraints(){
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 1, alpha: 0.9)
         
         view.addSubview(vacanciesTitle)
         vacanciesTitle.snp.makeConstraints { make in
@@ -56,10 +64,19 @@ class MainViewController: ViewBase {
             make.centerY.equalTo(vacanciesTitle)
         }
         
+        view.addSubview(someView)
+        someView.hero.id = "SomeView"
+        self.hero.isEnabled = true
+        someView.snp.makeConstraints { make in
+            make.top.equalTo(vacanciesTitle.snp.bottom).offset(40)
+            make.height.width.equalTo(80)
+            make.centerX.equalToSuperview()
+        }
+        
         view.addSubview(tableV)
         tableV.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(vacanciesTitle.snp.bottom).offset(40)
+            make.top.equalTo(someView.snp.bottom).offset(40)
         }
     }
     
@@ -70,6 +87,14 @@ class MainViewController: ViewBase {
                 self.tableV.reloadData()
             }
         }
+    }
+    
+    @objc func filterTapped(){
+        let vc = FilterViewController()
+        vc.hero.isEnabled = true
+        vc.hero.modalAnimationType = .selectBy(presenting: .slide(direction: .down), dismissing: .slide(direction: .up))
+        self.present(vc, animated: true, completion: nil)
+        
     }
 }
 
